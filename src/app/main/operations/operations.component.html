@@ -1,0 +1,54 @@
+<div>Welcome on MAM your Market Account Management</div>
+<!-- <button (click)="addOperation()">Add Ope</button> -->
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+
+        <th scope="col">Name</th>
+        <th scope="col">Share</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let operation of (currentOperation | async).operations.users;
+          index as i
+        "
+      >
+        <!-- <th scope="row">{{ i + 1 }}</th> -->
+        <td>
+          <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+          {{ operation.name }}
+        </td>
+        <td>{{ operation.sharePourcentage | number }}%</td>
+        <td>{{ operation.translatedValue | number }} $</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-sm d-flex justify-content-around">
+      Total Balance : {{ (currentOperation | async).balance | currency: "USD" }}
+    </div>
+    <div class="col-sm d-flex justify-content-around">
+      Number of Associate : {{ (currentOperation | async).associates }}
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm d-flex justify-content-around">
+      <button type="button" class="btn btn-primary" routerLink="/update">
+        Updata DataBase
+      </button>
+    </div>
+    <div class="col-sm d-flex justify-content-around">
+      <button type="button" class="btn btn-primary">Add Associate</button>
+    </div>
+    <div class="col-sm d-flex justify-content-around">
+      <button type="button" class="btn btn-primary">Show History</button>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
